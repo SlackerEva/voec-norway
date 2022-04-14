@@ -1,9 +1,10 @@
 import './App.css';
 import React, {useState, useEffect} from 'react';
-import Header from '../Header/Header';
-import Body from '../Body/Body';
+import Header from '../Header/Header.jsx';
+import ShopsList from '../ShopsList/ShopsList';
 import Footer from '../Footer/Footer';
 import api from '../../utils/api.js';
+import { Container } from '@mui/material';
 
 function App() {
 
@@ -24,7 +25,12 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Body shops={shops} />
+      <Container 
+        maxWidth="xl"
+        sx={{mt: "3rem"}}
+      >
+        <ShopsList shops={shops} />
+      </Container>
       <Footer />
     </div>
   );

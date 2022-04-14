@@ -6,7 +6,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 function Header() {
 
   return (
-    <AppBar>
+    <AppBar position="static">
       <Toolbar>
         <IconButton
           size="large"

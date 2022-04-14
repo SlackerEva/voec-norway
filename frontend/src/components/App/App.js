@@ -27,7 +27,7 @@ function App() {
       <Header />
       <Container 
         maxWidth="xl"
-        sx={{mt: "3rem"}}
+        sx={{mt: "1rem"}}
       >
         <ShopsList shops={shops} />
       </Container>

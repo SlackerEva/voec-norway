@@ -1,10 +1,25 @@
 import "./Header.css";
 
-function Header() {
-  return (
-    <div className="header">
+import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 
-    </div>
+function Header() {
+
+  return (
+    <AppBar>
+      <Toolbar>
+        <IconButton
+          size="large"
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          sx={{ mr: 2 }}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Typography>Customs shops</Typography>
+      </Toolbar>
+    </AppBar>
   );
 }
 

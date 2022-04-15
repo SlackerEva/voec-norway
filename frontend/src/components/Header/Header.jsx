@@ -3,8 +3,9 @@ import "./Header.css";
 import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
-function Header() {
+function Header(props) {
 
+  const { handleFilters } = props;
   return (
     <AppBar position="static">
       <Toolbar>
@@ -14,6 +15,7 @@ function Header() {
           color="inherit"
           aria-label="menu"
           sx={{ mr: 2 }}
+          onClick={handleFilters}
         >
           <MenuIcon />
         </IconButton>

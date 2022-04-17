@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Accordion, AccordionDetails, AccordionSummary, FormControlLabel, FormGroup, Typography, Checkbox, FormControl  } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, FormControlLabel, FormGroup, Typography, Checkbox, FormControl, Switch, Button  } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default function ControlledAccordions(props) {
@@ -25,6 +25,10 @@ export default function ControlledAccordions(props) {
         </AccordionSummary>
         <AccordionDetails>
           <FormControl sx={{ m: 2 }} component="fieldset" variant="standard">
+            <FormGroup sx={{ flexDirection: 'row', mb: 2, justifyContent: 'space-between'}}>
+              <FormControlLabel control={<Switch />} label="Select All" />
+              <Button variant="contained">Submit</Button>
+            </FormGroup>
             {countries.map((code, index) => {
               return <FormControlLabel key={index} control={<Checkbox defaultChecked />} label={code} />
             })}

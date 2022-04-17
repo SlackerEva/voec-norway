@@ -11,3 +11,13 @@ exports.getShops = (req, res) => {
     });
 };
 
+exports.getCountriesCode = (req, res) => {
+  Shop.distinct("countryCode")
+    .then((codes) => {    
+      console.log(codes);
+      res.send(codes)}
+    )
+    .catch(() => {
+      res.status(500).send({ message: 'Произошла ошибка' });
+    });
+};

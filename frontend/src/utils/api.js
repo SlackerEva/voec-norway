@@ -21,6 +21,17 @@ class Api {
       return this._getResponseData(res);
     }); 
   }
+
+  getСountries() {
+    return fetch(`${this._url}shops/countries`, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((res) => {
+      return this._getResponseData(res);
+    }); 
+  }
 }
 
 

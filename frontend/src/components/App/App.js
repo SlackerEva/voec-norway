@@ -10,13 +10,23 @@ import { Container } from '@mui/material';
 function App() {
 
   const [shops, setShops] = useState([]);
+  const [countries, setСountries] = useState([]);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
   useEffect(() => {
     api.getInitialCards()    
       .then((items)=>{
         console.log(items);
-        setShops(items)
+        setShops(items);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+
+    api.getСountries()    
+      .then((items)=>{
+        console.log(items);
+        setСountries(items);
       })
       .catch((err)=>{
         console.log(err);
@@ -32,7 +42,7 @@ function App() {
       >
         <ShopsList shops={shops} />
       </Container>
-      <Filters filtersOpen={isFiltersOpen} filtersClose={() => setIsFiltersOpen(false)} />
+      <Filters filtersOpen={isFiltersOpen} filtersClose={() => setIsFiltersOpen(false)} countries={countries} />
       <Footer />
     </div>
   );

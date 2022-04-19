@@ -1,9 +1,9 @@
 import './App.css';
 import React, {useState, useEffect} from 'react';
-import Header from '../Header/Header.jsx';
-import ShopsList from '../ShopsList/ShopsList';
-import Footer from '../Footer/Footer';
-import Filters from '../Filters/Filters';
+import Header from '../Header.jsx';
+import ShopsList from '../ShopsList';
+import Footer from '../Footer';
+import Filters from '../Filters';
 import api from '../../utils/api.js';
 import { Container } from '@mui/material';
 
@@ -26,7 +26,13 @@ function App() {
     api.getСountries()    
       .then((items)=>{
         console.log(items);
-        setСountries(items);
+        setСountries(        
+          items.map((item) => {
+            return {
+              code: item.slice(0, 2),
+              country: item.slice(5)
+            }
+          }));
       })
       .catch((err)=>{
         console.log(err);

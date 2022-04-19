@@ -1,5 +1,4 @@
-import './ShopsList.css';
-import ShopCard from '../ShopCard/ShopCard';
+import ShopCard from './ShopCard';
 import { Grid } from '@mui/material';
 
 function ShopsList(props) {

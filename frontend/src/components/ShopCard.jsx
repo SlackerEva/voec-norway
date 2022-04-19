@@ -1,6 +1,5 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
-import './ShopCard.css';
-import defImage from "../../images/defaultPhoto.jpg";
+import defImage from "../images/defaultPhoto.jpg";
 
 function ShopCard(props) {
   const { companyName, website } = props.shop;

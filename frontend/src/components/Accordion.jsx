@@ -1,15 +1,22 @@
-import * as React from 'react';
-import { Accordion, AccordionDetails, AccordionSummary, FormControlLabel, FormGroup, Typography, Checkbox, FormControl, Switch, Button  } from '@mui/material';
+import React, {useState} from 'react';
+import { Accordion, AccordionDetails, AccordionSummary, FormControlLabel, FormGroup, Typography, FormControl, Switch, Button  } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Checboxes from './Checkboxes';
 
 export default function ControlledAccordions(props) {
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
   const { countries } = props;
+  const [isSelectedAll, setIsSelectedAll] = useState(false);
+
+  function handleChangeSwitch() {
+    setIsSelectedAll(!isSelectedAll);
+  }
+
   return (
     <div>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
@@ -26,12 +33,10 @@ export default function ControlledAccordions(props) {
         <AccordionDetails>
           <FormControl sx={{ m: 2 }} component="fieldset" variant="standard">
             <FormGroup sx={{ flexDirection: 'row', mb: 2, justifyContent: 'space-between'}}>
-              <FormControlLabel control={<Switch />} label="Select All" />
+              <FormControlLabel control={<Switch checked={isSelectedAll} onChange={handleChangeSwitch} />} label="Select All" />
               <Button variant="contained">Submit</Button>
             </FormGroup>
-            {countries.map((code, index) => {
-              return <FormControlLabel key={index} control={<Checkbox defaultChecked />} label={code} />
-            })}
+            <Checboxes countries={countries} checked={isSelectedAll} />
           </FormControl>
         </AccordionDetails>
       </Accordion>

@@ -1,5 +1,5 @@
 import { Divider, Drawer, List, ListItem, ListItemText } from "@mui/material";
-import Accordion from "../Accordion/Accordion";
+import Accordion from "./Accordion";
 
 function Filters(props) {
   const {filtersOpen, filtersClose = Function.prototype, countries} = props;

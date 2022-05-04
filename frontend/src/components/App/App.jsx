@@ -6,18 +6,20 @@ import Footer from '../Footer';
 import Filters from '../Filters';
 import api from '../../utils/api.js';
 import { Container } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { addShops } from '../../store/shopSlice';
 
 function App() {
 
-  const [shops, setShops] = useState([]);
+  const dispatch = useDispatch();
   const [countries, setСountries] = useState([]);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
   useEffect(() => {
     api.getInitialCards()    
-      .then((items)=>{
-        console.log(items);
-        setShops(items);
+      .then((shops) => {
+        console.log(shops);
+        dispatch(addShops({shops}));
       })
       .catch((err)=>{
         console.log(err);
@@ -25,7 +27,7 @@ function App() {
 
     api.getСountries()    
       .then((items)=>{
-        console.log(items);
+        //console.log(items);
         setСountries(        
           items.map((item) => {
             return {
@@ -46,7 +48,7 @@ function App() {
         maxWidth="xl"
         sx={{mt: "1rem"}}
       >
-        <ShopsList shops={shops} />
+        <ShopsList />
       </Container>
       <Filters filtersOpen={isFiltersOpen} filtersClose={() => setIsFiltersOpen(false)} countries={countries} />
       <Footer />

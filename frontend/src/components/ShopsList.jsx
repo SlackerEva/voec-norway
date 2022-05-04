@@ -1,11 +1,15 @@
 import ShopCard from './ShopCard';
 import { Grid } from '@mui/material';
+import { useSelector } from 'react-redux';
 
-function ShopsList(props) {
+function ShopsList() {
+
+  const shops = useSelector(state => state.shops.shops);
+
   return (
     <Grid container spacing={2}>
-      {props.shops.map((shop) => {
-        return <ShopCard key={shop._id} shop={shop} />
+      {shops.map((shop) => {
+        return <ShopCard key={shop._id} {...shop} />
       })}
     </Grid>
   );

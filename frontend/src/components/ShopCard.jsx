@@ -1,9 +1,8 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import defImage from "../images/defaultPhoto.jpg";
 
-function ShopCard(props) {
-  const { companyName, website } = props.shop;
-
+function ShopCard({companyName, website}) {
+/*  const { companyName, website } = props.shop;*/
   return (
     <Grid item xs={12} md={4}>
       <Card

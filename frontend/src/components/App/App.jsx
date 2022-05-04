@@ -8,17 +8,16 @@ import api from '../../utils/api.js';
 import { Container } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { addShops } from '../../store/shopSlice';
+import { addCodes } from '../../store/codeSlice';
 
 function App() {
 
   const dispatch = useDispatch();
-  const [countries, setСountries] = useState([]);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
   useEffect(() => {
     api.getInitialCards()    
       .then((shops) => {
-        console.log(shops);
         dispatch(addShops({shops}));
       })
       .catch((err)=>{
@@ -27,14 +26,14 @@ function App() {
 
     api.getСountries()    
       .then((items)=>{
-        //console.log(items);
-        setСountries(        
-          items.map((item) => {
-            return {
-              code: item.slice(0, 2),
-              country: item.slice(5)
-            }
-          }));
+        const codes = items.map((item) => {
+          return {
+            code: item.slice(0, 2),
+            country: item.slice(5),
+            check: false,
+          }
+        });
+        dispatch(addCodes({codes}));
       })
       .catch((err)=>{
         console.log(err);
@@ -50,7 +49,7 @@ function App() {
       >
         <ShopsList />
       </Container>
-      <Filters filtersOpen={isFiltersOpen} filtersClose={() => setIsFiltersOpen(false)} countries={countries} />
+      <Filters filtersOpen={isFiltersOpen} filtersClose={() => setIsFiltersOpen(false)} />
       <Footer />
     </div>
   );

@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import { FormControlLabel, Checkbox, FormGroup } from '@mui/material';
+import { useSelector } from 'react-redux';
 
-function Checboxes(props) {
+function Checboxes() {
 
-  const { countries, checked } = props;
-  const [isCheck, setIsCheck] = useState([]);
+  const codes = useSelector(state => state.codes.codes);
 
-  useEffect(() => {
+/*  useEffect(() => {
     setIsCheck(countries.map((country) => country['code']));
     if (!checked) {
       setIsCheck([]);
@@ -22,12 +22,12 @@ function Checboxes(props) {
       setIsCheck(isCheck.filter(item => item !== id));
       console.log(isCheck);
     }
-  }
+  }*/
   
   return (
     <FormGroup>
-      {countries.map((country) => {
-        return <FormControlLabel key={country['code']} control={<Checkbox  id={country['code']} checked={isCheck.includes(country['code'])} onChange={handleClick} />} label={country['country']} />
+      {codes.map((country) => {
+        return <FormControlLabel key={country['code']} control={<Checkbox  id={country['code']} />} label={country['country']} />
       })}
     </FormGroup>
   );

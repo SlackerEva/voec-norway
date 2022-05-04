@@ -2,7 +2,7 @@ import { Divider, Drawer, List, ListItem, ListItemText } from "@mui/material";
 import Accordion from "./Accordion";
 
 function Filters(props) {
-  const {filtersOpen, filtersClose = Function.prototype, countries} = props;
+  const {filtersOpen, filtersClose = Function.prototype} = props;
   return (
     <Drawer
       anchor="left"
@@ -14,7 +14,7 @@ function Filters(props) {
           <ListItemText primary="Filters"/>
         </ListItem>
         <Divider/>
-        <Accordion countries={countries} />
+        <Accordion />
       </List>
     </Drawer>
 

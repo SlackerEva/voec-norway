@@ -13,9 +13,13 @@ const codeSlice = createSlice({
       checkCb(state, action) {
         const cb = state.codes.find(code => code.code === action.payload.code.code);
         cb.check = !cb.check;
+      },
+      checkAllCb(state, action) {
+        const allCb = state.codes;
+        allCb.map(cb => cb.check = action.payload.isCheckedAllCb);
       }
     }
   });
 
-export const { addCodes, checkCb } = codeSlice.actions;
+export const { addCodes, checkCb, checkAllCb } = codeSlice.actions;
 export default codeSlice.reducer;

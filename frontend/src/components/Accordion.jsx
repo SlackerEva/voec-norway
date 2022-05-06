@@ -2,13 +2,22 @@ import React, {useState} from 'react';
 import { Accordion, AccordionDetails, AccordionSummary, FormControlLabel, FormGroup, Typography, FormControl, Switch, Button  } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Checboxes from './Checkboxes';
+import { checkAllCb } from '../store/codeSlice';
+import { useDispatch } from 'react-redux';
 
 export default function ControlledAccordions() {
 
   const [expanded, setExpanded] = useState(false);
+  const [isCheckedAllCb, setIsCheckedAllCb] = useState(true);
+  const dispatch = useDispatch();
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
+  function handleSwitch() {
+    dispatch(checkAllCb({isCheckedAllCb}));
+    setIsCheckedAllCb(!isCheckedAllCb);
+  }
 
   return (
     <div>
@@ -33,7 +42,7 @@ export default function ControlledAccordions() {
         <AccordionDetails>
           <FormControl sx={{ m: 2 }} component="fieldset" variant="standard">
             <FormGroup sx={{ flexDirection: 'row', mb: 2, justifyContent: 'space-between'}}>
-              <FormControlLabel control={<Switch />} label="Select All" />
+              <FormControlLabel control={<Switch onChange={handleSwitch}/>} label="Select All" />
               <Button variant="contained">
                 Submit
               </Button>

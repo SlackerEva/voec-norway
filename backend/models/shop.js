@@ -2,13 +2,13 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 
 const shopSchema = new mongoose.Schema({
-  name: {
+  companyName: {
     type: String,
     required: true,
     minlength: 2,
     maxlength: 50,
   },
-  code: {
+  countryCode: {
     type: String,
     required: true,
     minlength: 2,

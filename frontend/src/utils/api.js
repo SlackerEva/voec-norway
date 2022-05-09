@@ -32,6 +32,22 @@ class Api {
       return this._getResponseData(res);
     }); 
   }
+
+  getFilteredShops(filteredCodes) {
+    return fetch(`${this._url}shops/filteredShops`, {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        codes: filteredCodes,
+      })
+    })
+    .then((res) => {
+      return this._getResponseData(res);
+    }); 
+  }
+
 }
 
 

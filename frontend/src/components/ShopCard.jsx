@@ -21,7 +21,9 @@ function ShopCard({companyName, website}) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">{website}</Button>
+          <Button size="small" href={"https://"+website} target="_blank">
+            {website}
+          </Button>
         </CardActions>
       </Card>
     </Grid>

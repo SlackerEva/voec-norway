@@ -3,13 +3,16 @@ import { Accordion, AccordionDetails, AccordionSummary, FormControlLabel, FormGr
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Checboxes from './Checkboxes';
 import { checkAllCb } from '../store/codeSlice';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { addShops } from '../store/shopSlice';
+import api from '../utils/api';
 
 export default function ControlledAccordions() {
 
   const [expanded, setExpanded] = useState(false);
   const [isCheckedAllCb, setIsCheckedAllCb] = useState(true);
   const dispatch = useDispatch();
+  const codes = useSelector(state => state.codes.codes);
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
@@ -17,6 +20,18 @@ export default function ControlledAccordions() {
   function handleSwitch() {
     dispatch(checkAllCb({isCheckedAllCb}));
     setIsCheckedAllCb(!isCheckedAllCb);
+  }
+
+  function handleFilterCards() {
+    const filteredCodes = codes.filter(code => code.check === true);
+    console.log(filteredCodes);
+    api.getFilteredShops(filteredCodes)
+      .then((shops) => {
+        dispatch(addShops({shops}));
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
   }
 
   return (
@@ -43,7 +58,7 @@ export default function ControlledAccordions() {
           <FormControl sx={{ m: 2 }} component="fieldset" variant="standard">
             <FormGroup sx={{ flexDirection: 'row', mb: 2, justifyContent: 'space-between'}}>
               <FormControlLabel control={<Switch onChange={handleSwitch}/>} label="Select All" />
-              <Button variant="contained">
+              <Button variant="contained" onClick={handleFilterCards}>
                 Submit
               </Button>
             </FormGroup>

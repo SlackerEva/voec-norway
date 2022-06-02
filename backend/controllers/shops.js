@@ -36,3 +36,8 @@ exports.getFilteredShops = (req, res) => {
       res.status(500).send({ message: 'Произошла ошибка' });
     });
 };
+
+exports.getImageFromStorage = (req, res) => {
+   console.log(req.url);
+   res.status(200).send();
+};

@@ -3,7 +3,6 @@ import { Grid } from '@mui/material';
 import { useSelector } from 'react-redux';
 
 function ShopsList() {
-
   const shops = useSelector(state => state.shops.shops);
 
   return (

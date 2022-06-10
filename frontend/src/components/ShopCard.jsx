@@ -1,19 +1,32 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import defImage from "../images/defaultPhoto.jpg";
-//import cardImg from "../../../backend/statics/Ableton AG.png";
-
+import { ref, getDownloadURL } from "firebase/storage";
+import { storage } from '../firebase/index';
+import React, {useState} from 'react';
 
 
 function ShopCard({companyName, website, imgPath}) {
-/*  const { companyName, website } = props.shop;*/
-//  let cardImg = "../images/" + companyName + ".png";
+  const [imgUrl, setImgUrl] = useState('');
+
+  function getPuth(imgPath) {
+    if (imgPath) {
+      const spaceRef = ref(storage, imgPath);
+      getDownloadURL(spaceRef)
+       .then((url) => {
+          setImgUrl(url);
+ //         console.log(url);
+        })
+      return imgUrl;
+    }
+    return defImage
+  }
+
   return (
     <Grid item xs={12} md={4}>
       <Card sx={{height: "100%"}}>
         <CardMedia 
           component="img"
-          //src="/static/media/defaultPhoto.fe985ad3.jpg"
-          image={imgPath || defImage}
+          image={getPuth(imgPath)}
           alt={companyName} 
           title={companyName}
           sx={{ height: 140}}

@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { addShops } from '../../store/shopSlice';
 import { addCodes } from '../../store/codeSlice';
 
+
 function App() {
 
   const dispatch = useDispatch();
